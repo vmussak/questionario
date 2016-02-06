@@ -64,7 +64,7 @@
 <script>
     
     function toggleInfo(element, id){
-        $("[data-info="+id+"]").slideToggle();
+        $("[data-info="+id+"]").slideToggle("slow");
         if($(element).hasClass("fa-plus-circle"))
             $(element).removeClass("fa-plus-circle").addClass("fa-minus-circle")
         else
