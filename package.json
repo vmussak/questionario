@@ -2,7 +2,7 @@
   "name": "questionario",
   "version": "0.0.0",
   "description": "Questionário contendo backend com cadastro de questoes e interface para responder",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

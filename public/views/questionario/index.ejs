@@ -1,0 +1,74 @@
+<% layout('../_layout') -%>
+
+<style>
+    
+    .fa-plus-circle, .fa-minus-circle{
+        cursor: pointer;
+    }
+    
+</style>
+
+<header class="panel-heading">
+    <span class="tools pull-right">
+        <a href="/questao/novo" class="btn btn-primary">
+            <span class="fa fa-plus"></span>
+            Novo
+        </a>
+    </span>
+</header>
+<div class="wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Questão</th>
+                <th width="5%">Editar</th>
+                <th width="5%">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i< model.length; i++) {%>
+                <tr>
+                    <td style="padding:2px">
+                        <i class="fa fa-plus-circle" onclick="toggleInfo(this, <%= model[i].id %>)"></i>
+                    </td>
+                    <td><%= model[i].descricao %></td>
+                    <td><a type="button" class="btn btn-success fa fa-pencil" title="Editar" href="/questoes/<%= model[i].id %>"></a></td>
+                    <td><button type="button" class="btn btn-danger fa fa-times" title="Excluir" onclick="excluir(<%= model[i].id %>)"></button></td>
+                </tr> 
+                <tr style="display:none" data-info="<%= model[i].id %>">
+                    <td class="details" colspan="4">
+                        <table class="table table-bordered table-striped table-condensed cf">
+                            <thead class="cf">
+                            <tr>
+                                <th>Resposta</th>
+                                <th>Correta?</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var j=0; j < model[i].respostas.length; j++) {%>
+                                    <tr>
+                                        <td><%= model[i].respostas[j].descricao %></td>
+                                        <td><%= model[i].respostas[j].correta ? 'SIM' : 'NÃO' %></td>
+                                    </tr>
+                                <% } %>  
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            <% } %>   
+        </tbody>
+    </table>
+</div>
+
+<script>
+    
+    function toggleInfo(element, id){
+        $("[data-info="+id+"]").toggle();
+        if($(element).hasClass("fa-plus-circle"))
+            $(element).removeClass("fa-plus-circle").addClass("fa-minus-circle")
+        else
+            $(element).removeClass("fa-minus-circle").addClass("fa-plus-circle")
+    }
+    
+</script>

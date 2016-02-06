@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-app.set('views','./views');
+app.set('views','./public/views');
 app.use(express.static('public'));
 
 app.listen(app.get('port'), () =>  {
