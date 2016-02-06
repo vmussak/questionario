@@ -1,3 +1,87 @@
 <% layout('../_layout') -%>
 
-<%= model.descricao %>
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Questão</legend>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="descricao">Descrição</label>
+            <div class="col-md-4">                     
+                <textarea class="form-control" id="descricao" name="descricao"><%= model.descricao %></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Adicionar Resposta</label>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary" onclick="adicionarResposta()">
+                    <span class="fa fa-plus"></span>
+                </button>
+            </div>
+        </div>
+        <div class="divRespostas">
+            <% for(var j=0; j < model.respostas.length; j++) {%>
+                <div class="form-group resposta">
+                    <label class="col-md-4 control-label">Resposta</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">     
+                                <input type="radio" name="correto" <%= model.respostas[j].correta ? 'checked' : '' %>>     
+                            </span>
+                            <input class="form-control" name="resposta" type="text" placeholder="Resposta" value="<%= model.respostas[j].descricao %>">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger fa fa-times" title="Excluir" onclick="excluir(this)"></button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        
+         <div class="form-group">
+            <label class="col-md-4 control-label" for="explicacao">Explicação</label>
+            <div class="col-md-4">                     
+                <textarea class="form-control" id="explicacao" name="explicacao"><%= model.explicacao %></textarea>
+            </div>
+        </div>
+    </fieldset>
+    
+    <div class="form-group">
+        <div class="col-md-4">
+            <a type="button" class="btn btn-primary" href="/questoes">
+                <span class="fa fa-undo"></span>
+                Voltar
+            </a>
+        </div>
+    </div>
+    
+</form>
+
+<div style="display:none" class="form-group resposta resposta-default">
+    <label class="col-md-4 control-label">Resposta</label>
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-addon">     
+                <input type="radio" name="correto">     
+            </span>
+            <input class="form-control" name="resposta" type="text" placeholder="Resposta">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-danger fa fa-times" title="Excluir" onclick="excluir(this)"></button>
+    </div>
+</div>
+
+<script>
+    
+    function excluir(element){
+        $(element).closest(".resposta").remove();
+    }
+    
+    function adicionarResposta(){
+        var resposta = $(".resposta-default").clone();
+        resposta.removeClass("resposta-default").show();
+        $(".divRespostas").append(resposta);
+    }
+    
+</script>

@@ -2,11 +2,11 @@ var questoes = [
     {
         id: 1,
         descricao: "Qual era a cor do cavalo branco de napoleão?",
+        explicacao: "Porque sim...",
         respostas: [
             {
                 descricao: 'Branca',
-                correta: true,
-                explicacao: 'Porque sim...'
+                correta: true
             },
             {
                 descricao: 'Preta',
@@ -25,11 +25,11 @@ var questoes = [
     {
         id: 2,
         descricao: "Você é inteligente?",
+        explicacao: "Porque eu nasci desprovido de inteligencia.",
         respostas: [
             {
                 descricao: 'Não',
-                correta: true,
-                explicacao: 'Porque sim...'
+                correta: true
             },
             {
                 descricao: 'Sim',
